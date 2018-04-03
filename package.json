@@ -1,0 +1,14 @@
+{
+  "name": "devices",
+  "version": "0.0.1",
+  "description": "An awesome Kibana plugin",
+  "main": "index.js",
+  "kibana": {
+    "version": "5.4.4",
+    "templateVersion": "8.0.0"
+  },
+  "build": {
+    "git": {},
+    "date": "Fri Mar 30 2018 09:42:48 GMT+0000 (UTC)"
+  }
+}

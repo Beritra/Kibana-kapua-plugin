@@ -1,0 +1,153 @@
+<div class="ng-scope" ng-controller="devicesHelloWorld">
+  <div class="kuiLocalNav">
+    <div class="kuiLocalNavRow">
+      <div class="kuiLocalNavRow__section">
+        <div class="kuiLocalBreadcrumbs">
+          <div class="kuiLocalBreadcrumb">
+            {{ title }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kuiView">
+    <div class="kuiViewContent kuiViewContent--constrainedWidth">
+      <div class="kuiViewContentItem">
+        <div class="kuiHeaderBar kuiVerticalRhythm">
+          <div class="kuiHeaderBarSection">
+            <h2 class="kuiSubTitle">
+              设备列表
+            </h2>
+          </div>
+        </div>
+
+        <div class="kuiControlledTable">
+          <!-- ToolBar -->
+          <div class="kuiToolBar">
+            <div class="kuiToolBarSearch">
+              <div class="kuiToolBarSearchBox">
+                <div class="kuiToolBarSearchBox__icon kuiIcon fa-search"></div>
+                <input
+                    class="kuiToolBarSearchBox__input"
+                    type="text"
+                    placeholder="Search..."
+                >
+              </div>
+            </div>
+            <select class="kuiSelect">
+              <option>Device 1</option>
+              <option>Device 2</option>
+              <option>Device 3</option>
+            </select>
+
+            <div class="kuiToolBarSection">
+              <button class="kuiButton kuiButton--primary">
+                Add
+              </button>
+
+              <button class="kuiButton kuiButton--basic kuiButton--icon">
+                <span class="kuiButton__icon kuiIcon fa-gear"></span>
+              </button>
+
+              <button class="kuiButton kuiButton--basic kuiButton--icon">
+                <span class="kuiButton__icon kuiIcon fa-bars"></span>
+              </button>
+            </div>
+
+            <div class="kuiToolBarSection">
+              <div class="kuiToolBarText">
+                {{deviceOffset}} &ndash; {{deviceOffset+devices.length-1}} of {{deviceCount}}
+              </div>
+
+              <div class="kuiButtonGroup kuiButtonGroup--united">
+                <button class="kuiButton kuiButton--basic kuiButton--icon"  ng-click="privPage()">
+                  <span class="kuiButton__icon kuiIcon fa-chevron-left"></span>
+                </button>
+                <button class="kuiButton kuiButton--basic kuiButton--icon" ng-click="nextPage()">
+                  <span class="kuiButton__icon kuiIcon fa-chevron-right"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <table class="kuiTable">
+            <thead>
+            <tr>
+              <th class="kuiTableHeaderCell kuiTableHeaderCell--checkBox">
+                <input type="checkbox" class="kuiCheckBox">
+              </th>
+              <th class="kuiTableHeaderCell">
+                设备ID
+              </th>
+              <th class="kuiTableHeaderCell">
+                状态
+              </th>
+              <th class="kuiTableHeaderCell">
+                创建时间
+              </th>
+              <th class="kuiTableHeaderCell kuiTableHeaderCell--alignRight">
+                创建者
+              </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="kuiTableRow" ng-repeat="item in devices">
+              <td class="kuiTableRowCell kuiTableRowCell--checkBox">
+                <div class="kuiTableRowCell__liner">
+                  <input type="checkbox" class="kuiCheckBox">
+                </div>
+              </td>
+              <td class="kuiTableRowCell">
+                <div class="kuiTableRowCell__liner">
+                  <a class="kuiLink" href="#">{{item.clientId}}</a>
+                </div>
+              </td>
+              <td class="kuiTableRowCell">
+                <div class="kuiTableRowCell__liner">
+                  <div class="kuiIcon kuiIcon--success fa-check"></div>
+                </div>
+              </td>
+              <td class="kuiTableRowCell">
+                <div class="kuiTableRowCell__liner">
+                  {{item.createdOn}}
+                </div>
+              </td>
+              <td class="kuiTableRowCell kuiTableRowCell--alignRight">
+                <div class="kuiTableRowCell__liner">
+                  {{item.createdBy}}
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <!-- ToolBarFooter -->
+          <div class="kuiToolBarFooter">
+            <div class="kuiToolBarFooterSection">
+              <div class="kuiToolBarText">
+                <!--5 Items selected-->
+              </div>
+            </div>
+
+            <div class="kuiToolBarFooterSection">
+              <div class="kuiToolBarText">
+                {{deviceOffset}} &ndash; {{deviceOffset+devices.length-1}} of {{deviceCount}}
+              </div>
+
+              <div class="kuiButtonGroup kuiButtonGroup--united">
+                <button class="kuiButton kuiButton--basic kuiButton--icon" ng-click="privPage()">
+                  <span class="kuiButton__icon kuiIcon fa-chevron-left"></span>
+                </button>
+                <button class="kuiButton kuiButton--basic kuiButton--icon" ng-click="nextPage()">
+                  <span class="kuiButton__icon kuiIcon fa-chevron-right" ></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
