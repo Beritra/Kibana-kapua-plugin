@@ -102,7 +102,6 @@ uiModules
       $http(req).then(
         function successCallback(response) {
           $scope.deviceCount = response.data.count;
-          console.log($scope.deviceCount);
         },
         function errorCallback() {
           alert('设备总数请求失败');
@@ -112,7 +111,6 @@ uiModules
 
     function nextPage() {
       clearEvent();
-      console.log('nextPage');
       if ($scope.deviceOffset + $scope.devices.length <= $scope.deviceCount) {//没有更多数据
         $scope.deviceOffset += $scope.deviceLimit;
         getDevices();
@@ -121,7 +119,6 @@ uiModules
 
     function privPage() {
       clearEvent();
-      console.log('privPage');
       if ($scope.deviceOffset > $scope.deviceLimit) {
         $scope.deviceOffset -= $scope.deviceLimit;
       } else if ($scope.deviceOffset !== 1) {
@@ -136,7 +133,6 @@ uiModules
     getToken();
 
     function addEvent() {
-      console.log('addEvent');
       if ($scope.nextPage == null) {
         $scope.nextPage = nextPage;
       }
@@ -146,7 +142,6 @@ uiModules
     }
 
     function clearEvent() {
-      console.log('clearEvent');
       $scope.privPage = null;
       $scope.nextPage = null;
     }
