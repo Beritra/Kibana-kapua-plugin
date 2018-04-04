@@ -36,6 +36,7 @@ uiModules
     $scope.deviceLimit = 20;
     $scope.deviceOffset = 1;
 
+
     function getToken() {
       const req = {
         method: 'POST',
@@ -83,6 +84,25 @@ uiModules
         });
     }
 
+    // function deviceConnections(devices) {
+    //   const req = {
+    //     method: 'GET',
+    //     url: kapuaUrl + '/v1/AQ/deviceConnections?limit=20&offset=0',
+    //     kbnXsrfToken: false,
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Authorization': $scope.token
+    //     },
+    //     data: devices
+    //   };
+    //   $http(req).then(
+    //     function successCallback(response) {
+    //     },
+    //     function errorCallback() {
+    //       alert('设备连接信息请求失败');
+    //     });
+    // }
+
     function deviceCount() {
       const req = {
         method: 'POST',
@@ -123,7 +143,7 @@ uiModules
         $scope.deviceOffset -= $scope.deviceLimit;
       } else if ($scope.deviceOffset !== 1) {
         $scope.deviceOffset = 1;
-      }else{
+      } else {
         addEvent();
         return;
       }
