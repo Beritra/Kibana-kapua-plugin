@@ -33,8 +33,14 @@ uiModules
     $scope.$watch('$destroy', unsubscribe);
 
     const kapuaUrl = 'http://10.18.1.4:18081';
-    $scope.deviceLimit = 20;
-    $scope.deviceOffset = 1;
+
+
+    function init() {
+      $scope.deviceLimit = 20;
+      $scope.deviceOffset = 1;
+    }
+
+    init();
 
 
     function getToken() {
@@ -66,7 +72,7 @@ uiModules
       const offset = $scope.deviceOffset - 1;
       const req = {
         method: 'GET',
-        url: kapuaUrl + '/v1/AQ/devices?offset=' + offset + '&limit=' + $scope.deviceLimit,
+        url: kapuaUrl + '/v1/AQ/devices?fetchAttributes=connection&offset=' + offset + '&limit=' + $scope.deviceLimit,
         kbnXsrfToken: false,
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +90,7 @@ uiModules
         });
     }
 
-    // function deviceConnections(devices) {
+    // function deviceConnections(clientIndex,clientId) {
     //   const req = {
     //     method: 'GET',
     //     url: kapuaUrl + '/v1/AQ/deviceConnections?limit=20&offset=0',
@@ -93,10 +99,11 @@ uiModules
     //       'Accept': 'application/json',
     //       'Authorization': $scope.token
     //     },
-    //     data: devices
+    //     data: clientId
     //   };
     //   $http(req).then(
     //     function successCallback(response) {
+    //       $scope.devices[clientIndex].connection=response.
     //     },
     //     function errorCallback() {
     //       alert('设备连接信息请求失败');
@@ -159,11 +166,44 @@ uiModules
       if ($scope.privPage == null) {
         $scope.privPage = privPage;
       }
+      if ($scope.search == null) {
+        $scope.search = search;
+      }
     }
 
     function clearEvent() {
       $scope.privPage = null;
       $scope.nextPage = null;
+      $scope.search = null;
+    }
+
+    function search() {
+      if ($scope.deviceId === '') {
+        getDevices();
+        return;
+      }
+
+      clearEvent();
+      console.log($scope.deviceId);
+      const req = {
+        method: 'GET',
+        url: kapuaUrl + '/v1/AQ/devices/' + $scope.deviceId,
+        kbnXsrfToken: false,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': $scope.token
+        }
+      };
+      $http(req).then(
+        function successCallback(response) {
+          $scope.devices = [];
+          $scope.devices[0] = response.data;
+          addEvent();
+        },
+        function errorCallback() {
+          alert('找不到该设备');
+        });
     }
 
   });
